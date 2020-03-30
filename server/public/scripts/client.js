@@ -12,3 +12,58 @@ function init() {
 
   getEquations();
 }
+
+function clickAdd() {
+  operation = "Add";
+}
+
+function clickSubtract() {
+  operation = "Subtract";
+}
+
+function clickMultiply() {
+  operation = "Multiply";
+}
+
+function clickDivide() {
+  operation = "Divide";
+}
+
+function clickEquals() {
+  operation = "Equals";
+
+  const dataForServer = {
+      num1: $("#js-input-num1").val(),
+      num2: $("#js-input-num2").val(),
+      operation: operation
+ }
+}
+
+function clickClear() {
+ operation = "Clear";
+}
+
+function postEquation(dataForServer) {
+    $ajax.({
+        type: "POST",
+        url: "/math",
+})
+    .then(response => {
+     console.log(response);
+     getEquations();
+    })
+
+.catch(err => {
+console.warn(err);
+});
+}
+
+function getEquations() {
+    $.ajax({
+        type: "GET",
+        url: "/math",
+    })
+.then(response => {
+    console.log(response);
+})
+}

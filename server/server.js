@@ -7,6 +7,14 @@ app.use(express.static('server/public'));
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
 
+app.get('/math', (req, res)=> {
+
+});
+
+app.post('/math', (req, res) => {
+
+});
+
 app.listen({PORT, () => {
 console.log('Listening on ports: ${PORT}');
 })
