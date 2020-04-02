@@ -12,7 +12,25 @@ app.get('/math', (req, res) => {
 });
 
 app.post('/math', (req, res) => {
+    console.log(req.body);
 
+    const equation = req.body;
+
+    if (equation.operation == "Add"); {
+        equation.answer = parseInt(equation.num1) + parseInt(equation.num2);
+    }
+      else if (equation.operation == "Subtract"); {
+        equation.answer = parseInt(equation.num1) - parseInt(equation.num2);
+    }
+    else if (equation.operation == "Multiply"); {
+        equation.answer = parseInt(equation.num1) * parseInt(equation.num2);
+    }
+    else if (equation.operation == "Divide"); {
+        equation.answer = parseInt(equation.num1) / parseInt(equation.num2);
+    }
+
+
+    res.sendStatus(200);
 });
 
 app.listen(PORT, () => {

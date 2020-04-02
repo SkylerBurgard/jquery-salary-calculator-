@@ -30,40 +30,42 @@ function clickDivide() {
 }
 
 function clickEquals() {
-  operation = "Equals";
+  // WRONG - operation = "Equals";
 
   const dataForServer = {
-      num1: $("#js-input-num1").val(),
-      num2: $("#js-input-num2").val(),
-      operation: operation
- }
+    num1: $("#js-input-num1").val(),
+    num2: $("#js-input-num2").val(),
+    operation: operation
+  };
+  postEquation(dataForServer)
 }
 
 function clickClear() {
- operation = "Clear";
+  operation = "Clear";
 }
 
 function postEquation(dataForServer) {
-    $ajax.({
-        type: "POST",
-        url: "/math",
-})
+  $.ajax({
+    type: "POST",
+    url: "/math",
+    data: dataForServer,
+  })
     .then(response => {
-     console.log(response);
-     getEquations();
+      console.log(response);
+      getEquations();
     })
 
-.catch(err => {
-console.warn(err);
-});
+    .catch(err => {
+      console.warn(err);
+    });
 }
 
 function getEquations() {
-    $.ajax({
-        type: "GET",
-        url: "/math",
+  $.ajax({
+    type: "GET",
+    url: "/math",
+  })
+    .then(response => {
+      console.log(response);
     })
-.then(response => {
-    console.log(response);
-})
 }
